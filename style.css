@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: monospace; 
+    background: hsl(0, 0%, 91%);
+    padding: 20px;
+}
+.container{
+    max-width: 1000px;
+    background: #e8e8e8;
+    margin: 0 auto;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+h1{
+    font-size: 24px;
+    text-align: center;
+    color: #0e0202;
+    margin-bottom: 10px;
+}
+.subtitulo{
+    text-align: center;
+    color: #494545;
+    font-size: 14px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+.leyenda{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 25px;
+    font-size: 13px;
+}
+canvas{
+    display: block;
+    margin: 20px auto;
+    border: 1px solid #bbb;
+    background: #f4f2f2;
+    width: 100%;
+    height: auto;
+}
+.escala-y{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    float: left;
+    margin-top: -295px;
+    margin-left:15px;
+    height:260px;
+    font-size: 12px;
+    color: #090909;
+}
+.eje-x{
+    text-align: center;
+    font-size: 12px;
+    color: #545556;
+    margin-top: 10px;
+    clear: both;
+}
+.seccion-interactiva{
+    display: flex;
+    gap: 40px; 
+    align-items: flex-start;
+    padding-top: 20px;
+}
+.columna-izquierda{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.control-group{
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+label{
+    font-size: 12px;
+    font-weight:400;
+    color: #101012;
+    padding-right: 14px;
+}
+select, input{
+    padding: 6px;
+    font-family: monospace;
+    border: 1px solid #1d2b4b;
+    border-radius: 4px;
+    font-size: 10px;
+    width: 70px;
+    text-align: center;
+}
+.columna-derecha{
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.botones{
+    display: flex;
+    gap: 10px;
+}
+button{
+    flex: 1;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid #2f67ec;
+    transition: all 0.2s;
+    background: #2f67ec;
+    color: white;
+}
+button:hover{
+    opacity: 0.8;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.info-emisor, .info-receptor, .info-estado{
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+.info-emisor{
+    color: #a00;
+}
+.info-receptor{
+    color: #060; 
+}
+.info-estado{
+    color: #004a99;
+}

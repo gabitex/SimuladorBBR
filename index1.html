@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCP BBR </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>TCP BBR-Algoritmo de Congestion</h1>
+        <div class="leyenda">
+            <div><span style="color: red;">■</span> <strong>Paquetes en vuelo</strong></div>
+            <div><span style="color: blue;">■</span> <strong>Objetivo (Ancho de banda)</strong></div>
+            <div><span style="color: green;">■</span> <strong>BW real (Mbps)</strong></div>
+        </div>
+
+        <canvas id="grafico" width="900" height="400"></canvas>
+
+        <div class="escala-y">
+            <span>100</span>
+            <span>75</span>
+            <span>50</span>
+            <span>25</span>
+            <span>0</span>
+        </div>
+        <p class="eje-x">Tiempo de simulación</p>
+
+         <div class="seccion-interactiva">
+                <div class="control-group">
+                    <label>Calidad de internet:</label>
+                    <select id="escenario">
+                        <option value="1">1: Estable (Fibra)</option>
+                        <option value="2">2: Variable (Cuello de botella)</option>
+                        <option value="3">3: Inestable (Wi-Fi/Radio)</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Paquetes a Enviar:</label>
+                    <input type="number" id="total_paquetes" value="1000" min="100">
+                </div>
+                
+                <div class="control-group">
+                    <label>Ancho de Banda Inicial (Mbps):</label>
+                    <input type="number" id="bw_inicial" value="10">
+                </div>
+                
+                <div class="control-group">
+                    <label>Latencia RTT base (ms):</label>
+                    <input type="number" id="rtt_base" value="40">
+                </div>
+                <div class="control-group">
+                    <label>Tamaño Buffer del Router:</label>
+                    <input type="number" id="buffer" value="100">
+                </div>
+            </div>
+            <div class="columna-derecha">
+                <div class="botones">
+                    <button id="simularBtn">Iniciar </button>
+                    <button id="resetBtn">Reiniciar </button>
+                </div>
+
+                <div class="info" id="estado">
+                    <div class="info-emisor" id="txt-emisor">
+                        <strong>EMISOR</strong>: Esperando
+                    </div>
+                    <div class="info-receptor" id="txt-receptor">
+                        <strong>RECEPTOR</strong>: Sin datos
+                    </div>
+                    <div class="info-estado" id="txt-estado">
+                        <strong>ESTADO</strong>: Listo
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="bbr1.js"></script>
+</body>
+</html>
