@@ -14,8 +14,8 @@ class SimuladorBBR{
                  (esc === "2") ? (this.tx < this.total / 2 ? bwI : bwI * 2.5) :
                  bwI + Math.sin(this.paso * 0.4) * (bwI * 0.5);
 
-        var bdpPuro = (bw * 1e6 * (rtt / 1000)) / 12000; 
-        var ganancia = this.paso < 20 ? 2.89 : [1.25, 0.75, 1, 1, 1][this.paso % 5] || 1;
+        var bdpPuro = (bw * 1e6 * (rtt / 1000)) / 12000; //UTILIZE IA desde ACA-> para esta aparte de la seccion logica del control--------------------
+        var ganancia = this.paso < 20 ? 2.89 : [1.25, 0.75, 1, 1, 1][this.paso % 5] || 1;//tenia problemas para resolver calculos
         var bdpGanancia = bdpPuro * ganancia;
 
         var enviar = Math.max(0, Math.floor(bdpGanancia - this.evActual));
@@ -30,7 +30,7 @@ class SimuladorBBR{
 
         this.evActual += enviar - recibir;
         this.tx += enviar;
-        this.rx += recibir;
+        this.rx += recibir; //HASTA ACA <----------------------------------------------------------------------------------------------------------
 
         this.historial.ev.push(this.evActual);
         this.historial.bdp.push(bdpGanancia);
@@ -45,10 +45,10 @@ const lienzo = document.getElementById("grafico");
 const ctx = lienzo.getContext("2d");
 
 function dibujar(final = false){
-    ctx.clearRect(0, 0, lienzo.width, lienzo.height);
-    const maxVal = Math.max(...bbr.historial.ev, ...bbr.historial.bdp, 10);
+    ctx.clearRect(0, 0, lienzo.width, lienzo.height);// AQUI use IA para el calculo de las escalas,porque la grafica no podia--------------------- 
+    const maxVal = Math.max(...bbr.historial.ev, ...bbr.historial.bdp, 10);//ajustar bien al canvas, por esa razon
     const escY = (lienzo.height * 0.8) / maxVal;
-    const escX = lienzo.width / (final ? bbr.historial.ev.length : Math.max(bbr.paso, 20));
+    const escX = lienzo.width / (final ? bbr.historial.ev.length : Math.max(bbr.paso, 20));//HASTA AQUI<------------------------------------------
 
     const linea = (datos, color, ancho, dash = []) =>{
         if (datos.length < 2) return;
@@ -66,7 +66,7 @@ function dibujar(final = false){
 }
 
 document.getElementById("simularBtn").onclick = () =>{
-    if (loop) clearInterval(loop);
+    if (loop) clearInterval(loop);//DESDE ACA UTILIZE IA ->para mapear las entradas de datos, me dificultaba-------------------------------
     bbr.reiniciar(document.getElementById("total_paquetes").value);
     const [esc, bw, rtt] = ["escenario", "bw_inicial", "rtt_base"].map(id => document.getElementById(id).value);
 
@@ -75,10 +75,10 @@ document.getElementById("simularBtn").onclick = () =>{
         if (!res){
             clearInterval(loop);
             dibujar(true);
-            var promedio = Math.floor(bbr.utilizacionSuma / bbr.paso);
+            var promedio = Math.floor(bbr.utilizacionSuma / bbr.paso);// Aqui para el calculo del promedio final se muestre
             document.getElementById("txt-estado").innerHTML = 
                 `ESTADO: <span style="color:#004a99">FINALIZADO | Utilización Media: ${promedio}%</span>`;
-            return;
+            return;//--------------------------------HASTA ACA<----------------------------------------------------------------------------
         }
         dibujar();
         document.getElementById("txt-emisor").innerHTML = 
